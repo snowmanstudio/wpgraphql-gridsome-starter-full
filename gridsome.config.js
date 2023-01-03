@@ -10,7 +10,7 @@ module.exports = {
     {
       use: "gridsome-source-graphql",
       options: {
-        url: "http://freehub.online/graphql",
+        url: "https://freehub.online/graphql",
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
       },
