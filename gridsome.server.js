@@ -4,7 +4,6 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
- 
 module.exports = function(api) {
   api.loadSource(({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
@@ -27,16 +26,17 @@ module.exports = function(api) {
     `);
 
     if (data && data.posts && data.posts.edges) {
-  data.posts.edges.forEach(({ node, id }) => {
-    createPage({
-      path: `/blog/${node.uri}`,
-      component: "./src/templates/Post.vue",
-      context: {
-        id: node.id,
-      },
-    });
+      data.posts.edges.forEach(({ node, id }) => {
+        createPage({
+          path: `/blog/${node.uri}`,
+          component: "./src/templates/Post.vue",
+          context: {
+            id: node.id,
+          },
+        });
+      });
+    }
   });
-}
 
   api.createPages(async ({ graphql, createPage }) => {
     const { data } = await graphql(`
