@@ -26,16 +26,17 @@ module.exports = function(api) {
       
     `);
 
-    data.posts.edges.forEach(({ node, id }) => {
-      createPage({
-        path: `/blog/${node.uri}`,
-        component: "./src/templates/Post.vue",
-        context: {
-          id: node.id,
-        },
-      });
+    if (data && data.posts && data.posts.edges) {
+  data.posts.edges.forEach(({ node, id }) => {
+    createPage({
+      path: `/blog/${node.uri}`,
+      component: "./src/templates/Post.vue",
+      context: {
+        id: node.id,
+      },
     });
   });
+}
 
   api.createPages(async ({ graphql, createPage }) => {
     const { data } = await graphql(`
